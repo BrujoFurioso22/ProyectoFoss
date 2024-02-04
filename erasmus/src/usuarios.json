@@ -1,0 +1,14 @@
+[
+  {
+    "CORREO": "diego@gmail.com",
+    "NOMBRE": "DIEGO BARBECHO",
+    "EDAD": 20,
+    "CONTRASENA": "1"
+  },
+  {
+    "CORREO": "pedro",
+    "NOMBRE": "PEDRO FIGUEROA",
+    "EDAD": 21,
+    "CONTRASENA": "2"
+  }
+]

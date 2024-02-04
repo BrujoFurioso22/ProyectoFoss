@@ -1,0 +1,23 @@
+.contenedor-header{
+    width: 100%;
+    background-color: antiquewhite;
+    padding: 15px 0 ;
+    display: flex;
+    position: relative;
+    justify-content: space-around;
+    align-items: center;
+}
+.contenedor-usuario{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.btn-salir{
+    background-color: blueviolet;
+    color: white;
+    padding: 7px 10px;
+    border-radius: 7px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
