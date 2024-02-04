@@ -113,8 +113,6 @@ const MyGrid = ({
   botonesClickeados,
   correcto,
 }) => {
-  // const generateUniqueKey = (imagen, filaColumna) =>
-  //   `${imagen.idimagenes}_${filaColumna}`;
   return (
     <ContenedorGrid>
       <React.Fragment>
@@ -213,6 +211,7 @@ export const GlobosJuego = () => {
   const [shuffledImagesColumn4, setShuffledImagesColumn4] = useState([]);
   const [botonesAcertados, setBotonesAcertados] = useState(0);
   const [botonesErroneos, setBotonesErroneos] = useState(0);
+  const [cuentaRegresiva, setCuentaRegresiva]=useState(3)
 
   const buscarRutaImagenPorId = (idimg, jsonArr) => {
     // Buscar el objeto en el arreglo que coincida con el idimg proporcionado
