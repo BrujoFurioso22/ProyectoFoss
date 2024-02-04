@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import logo1 from "SOURCES/diego.svg";
 import logo2 from "SOURCES/pedro.svg";
-import logo3 from "SOURCES/tef.svg";
 
 // Estilos para el componente
 const AboutContainer = styled.div`
@@ -96,15 +95,6 @@ export const AcercaDe = () => {
           </div>
           <div className="contenedorInfo">
             <span>pedro.figueroa@es.uazuay.edu.ec</span>
-          </div>
-        </TeamMember>
-        <TeamMember>
-          <div className="contenedorImagen">
-            <Image src={logo3} alt="Miembro 3" />
-            <span>Sthefany Peñafiel</span>
-          </div>
-          <div className="contenedorInfo">
-            <span>sthefanyyt@es.uazuay.edu.ec</span>
           </div>
         </TeamMember>
       </TeamList>
