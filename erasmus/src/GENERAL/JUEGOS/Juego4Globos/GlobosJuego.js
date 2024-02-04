@@ -92,6 +92,7 @@ const ContenedorCuentaRegresiva = styled.div`
   .cuentaRegresiva {
     font-weight: 600;
     font-size: 5rem;
+    color: white;
   }
 `;
 
