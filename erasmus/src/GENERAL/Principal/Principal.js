@@ -5,6 +5,7 @@ import { ROUTES } from "CONFIG/ROUTES/paths";
 import imgJuegoDirecciones from 'SOURCES/JuegoDirecciones.jpg'
 import imgJuegoMemoria from 'SOURCES/JuegoMemoria.jpg'
 import imgJuegoPizarron from 'SOURCES/JuegoPizarron.jpg'
+import imgJuegoGlobos from 'SOURCES/JuegoGlobos.jpg'
 const ContenedorPrincipal = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -41,7 +42,7 @@ const juegos = [
   {
     nombre: "Globos Colores",
     path: ROUTES.JUEGOS.J4,
-    img: imgJuegoDirecciones,
+    img: imgJuegoGlobos,
   },
 ];
 export const Principal = () => {

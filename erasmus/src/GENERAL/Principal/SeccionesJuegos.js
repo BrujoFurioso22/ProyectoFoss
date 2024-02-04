@@ -18,8 +18,9 @@ const ContenedorSeccion = styled(Link)`
   }
   img {
     width: 100%;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 15px 15px 0 0;
+    height: 10rem;
   }
   @keyframes wobble-hor-bottom {
     0%,
