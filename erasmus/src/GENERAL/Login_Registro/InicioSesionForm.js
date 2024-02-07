@@ -5,6 +5,7 @@ import { usuarios } from "usuarios";
 import { LoginUsers } from "CONFIG/BACKEND/Consultas/LoginRegister";
 
 export function InicioSesion() {
+  const [mostrarPassword, setMostrarPassword] = useState(false);
   const { login } = useAuthContext();
   const [usuario, setUsuario] = useState({
     correo: "",
@@ -33,7 +34,7 @@ export function InicioSesion() {
     evt.preventDefault();
     const { correo, contrasena } = usuario;
     const datosUsu = await ValidarInicioSesion(correo, contrasena);
-    console.log(datosUsu)
+    console.log(datosUsu);
     if (datosUsu.length > 0) {
       login(datosUsu[0]);
     } else {
@@ -46,6 +47,9 @@ export function InicioSesion() {
         [key]: "",
       });
     }
+  };
+  const toggleMostrarPassword = () => {
+    setMostrarPassword(!mostrarPassword);
   };
 
   return (
@@ -61,14 +65,48 @@ export function InicioSesion() {
           onChange={handleChange}
           className="inputLogin"
         />
-        <input
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            position: "relative",
+          }}
+        >
+          <input
+            type={mostrarPassword ? "text" : "password"}
+            name="contrasena"
+            value={usuario.contrasena}
+            onChange={handleChange}
+            placeholder="Contraseña"
+            className="inputLogin"
+            required={true}
+          />
+          <span
+            style={{
+              userSelect: "none",
+              cursor: "pointer",
+              fontSize: "20px",
+              position: "absolute",
+              right: "15px",
+            }}
+            onClick={toggleMostrarPassword}
+          >
+            {mostrarPassword ? (
+              <i className="bi bi-eye-slash-fill"></i>
+            ) : (
+              <i className="bi bi-eye-fill"></i>
+            )}
+          </span>
+        </div>
+        {/* <input
           type="contrasena"
           name="contrasena"
           placeholder="Contraseña"
           value={usuario.contrasena}
           onChange={handleChange}
           className="inputLogin"
-        />
+        /> */}
         <span style={{ color: "red" }}>{mensajeError}</span>
         {/* <a className="aLogin" href="/">
           Olvidaste tu contraseña?

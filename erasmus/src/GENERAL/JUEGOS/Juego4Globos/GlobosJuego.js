@@ -218,7 +218,6 @@ const GridItemStyled = styled.button`
 `;
 
 const MyGrid = ({
-  numRows,
   s2,
   s4,
   deshabilitado,
@@ -514,7 +513,7 @@ export const GlobosJuego = () => {
     const idest = localStorage.getItem("id");
     const fechaActual = obtenerFechaActual();
     let puntaje = 0;
-    if(status){
+    if (status) {
       puntaje = velocidad;
     }
     const res = await guardarPuntaje(idest, numJuego, fechaActual, puntaje);
@@ -547,12 +546,12 @@ export const GlobosJuego = () => {
       // console.log(botonesAcertados);
       if (botonesErroneos === 3) {
         setJuegoStatus(false);
-        guardarResultados(false)
+        guardarResultados(false);
         ReiniciarJuego();
       } else {
         if (botonesAcertados === totalCorrectos) {
           setJuegoStatus(true);
-          guardarResultados(true)
+          guardarResultados(true);
           ReiniciarJuego();
         }
       }
@@ -562,8 +561,11 @@ export const GlobosJuego = () => {
 
   useEffect(() => {
     if (generando === 1) {
-      DecirTexto("Elije los globos del mismo color al globo que se encuentra en el centro. Tienes 3 intentos",500)
-      DecirTexto(`${correcto.nombreimagen} es el correcto`,500)
+      DecirTexto(
+        "Elije los globos del mismo color al globo que se encuentra en el centro. Tienes 3 intentos",
+        500
+      );
+      DecirTexto(`${correcto.nombreimagen} es el correcto`, 500);
       // Retardo inicial de 3 segundos
       const initialDelay = setTimeout(() => {
         setCuentaRegresiva(5); // Comienza el conteo
@@ -600,6 +602,19 @@ export const GlobosJuego = () => {
       }
     }
   }, [cuentaRegresiva, generando]);
+
+  useEffect(() => {
+    const OrdenFinal = () => {
+      if (juegoStatus !== null) {
+        if (juegoStatus) {
+          DecirTexto("Felicidades, has ganado.", 1000);
+        } else {
+          DecirTexto("Intenta de nuevo.", 1000);
+        }
+      }
+    };
+    OrdenFinal()
+  }, [juegoStatus]);
 
   return (
     <ContenedorGlobal>
@@ -645,11 +660,8 @@ export const GlobosJuego = () => {
             </div>
           </ContenedorCorrecto>
           <MyGrid
-            numRows={numfilas}
             s2={shuffledImagesColumn2}
             s4={shuffledImagesColumn4}
-            shuffledAction={shuffleArray}
-            imagenes={imagenes}
             correcto={correcto}
             iniciaJuego={iniciaJuego}
             velocidad={velocidad}

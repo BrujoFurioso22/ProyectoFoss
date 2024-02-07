@@ -14,13 +14,12 @@ import { Loader } from "STYLED-COMPONENTS/Loader/loader";
 import styled from "styled-components";
 
 import "./assets/styles/boton_iniciar.css";
-import "./assets/styles/checkbox.css"
+import "./assets/styles/checkbox.css";
 
 import openI from "SOURCES/openhand.svg";
 import closeI from "SOURCES/closehand.svg";
 
 import * as handTrack from "handtrackjs";
-
 
 const numJuego = "juego1"; //no tocar esto
 
@@ -87,11 +86,11 @@ const ContenedorBotones = styled.div`
     justify-content: center;
     align-items: center;
     gap: 4px;
-    .tituloH{
+    .tituloH {
       background-color: var(--color-p);
       color: white;
       padding: 2px 8px;
-      border-radius:10px ;
+      border-radius: 10px;
     }
   }
 `;
@@ -200,8 +199,42 @@ export function Game1Handtrack() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (iniciarJuego === false) {
+
           setMostrarLoader(true);
         }
+        const synth = window.speechSynthesis;
+        const utterThis = new SpeechSynthesisUtterance(text);
+
+        // Personalizar la voz
+        const voices = synth.getVoices();
+        utterThis.voice = voices.find((voice) => voice.lang === "es-ES");
+
+        // Establecer el idioma
+        utterThis.lang = "es-ES";
+        utterThis.rate = 0.9;
+
+        // Hablar el texto
+        synth.speak(utterThis);
+
+        // Manejar el evento onend
+        utterThis.onend = () => {
+          // console.log("La síntesis de voz ha terminado");
+          // Resolver la promesa cuando termine la síntesis de voz
+          resolve();
+        };
+
+        // Manejar cualquier error
+        utterThis.onerror = (error) => {
+          // console.error("Error en la síntesis de voz", error);
+          // Rechazar la promesa en caso de error
+          reject(error);
+        };
+      }, delay);
+    });
+  };
+  const DecirTextoFinal = (text, delay) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
         const synth = window.speechSynthesis;
         const utterThis = new SpeechSynthesisUtterance(text);
 
@@ -287,7 +320,6 @@ export function Game1Handtrack() {
           img4: buscarRutaImagenPorId(res[0].img4, resimg),
         }));
       }
-
     }
   };
 
@@ -435,10 +467,23 @@ export function Game1Handtrack() {
     };
   }, [contador]);
 
+  useEffect(() => {
+    const DecirOrdenFinal = () => {
+      if (iniciarJuego === false && hajugado === true) {
+        if (puntaje === numRondas) {
+          DecirTextoFinal("Felicidades, has ganado", 1000);
+        } else {
+          DecirTextoFinal("Intenta de nuevo", 1000);
+        }
+      }
+    };
+    DecirOrdenFinal();
+  }, [puntaje, iniciarJuego, hajugado]);
+
   //Funcion para iniciar el juego
   const handleIniciarJuego = (value) => {
     DecirTexto(
-      "selecciona los rectangulos de acuerdo a la indicacion que se escuchara a continuacion",
+      "selecciona los rectángulos de acuerdo a la indicación que se escuchará a continuación",
       500
     )
       .then(() => {

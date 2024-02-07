@@ -1,8 +1,26 @@
 import "./botonJuego.css";
-export const BotonJugar = ({ handleClick, texto }) => {
+export const BotonJugar = ({
+  handleClick,
+  texto,
+  opacityV,
+  mostrarBotonConDis,
+}) => {
   return (
-    <button onClick={()=> handleClick()} className="botonJugar">
-      {texto}
-    </button>
+    <>
+      {mostrarBotonConDis ? (
+        <button
+          onClick={() => handleClick()}
+          className="botonJugar"
+          style={{ opacity: opacityV ? "1" : "0" }}
+          disabled={!opacityV}
+        >
+          {texto}
+        </button>
+      ) : (
+        <button onClick={() => handleClick()} className="botonJugar">
+          {texto}
+        </button>
+      )}
+    </>
   );
 };
